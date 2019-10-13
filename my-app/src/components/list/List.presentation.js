@@ -1,6 +1,8 @@
 import React, { forwardRef } from "react";
 import { FixedSizeList as List } from "react-window";
 
+import Checkbox from "../form/Checkbox.presentation";
+
 const outerElementType = forwardRef((props, ref) => (
   <div ref={ref} onWheel={handleOnWheel} {...props} />
 ));
@@ -10,21 +12,30 @@ function handleOnWheel({ deltaY }) {
   console.log("handleOnWheel()", deltaY);
 }
 
-const Row = ({ index, style }) => (
-  <div className={index % 2 ? "ListItemOdd" : "ListItemEven"} style={style}>
-    Row {index}
-  </div>
-);
+export const ListComponent = fucku => {
+  const { data } = fucku;
 
-export const ListComponent = () => (
-  <List
-    className="List"
-    height={150}
-    itemCount={1000}
-    itemSize={35}
-    margin={20}
-    outerElementType={outerElementType}
-  >
-    {Row}
-  </List>
-);
+  const Row = ({ index, style }) => {
+    return (
+      <div>
+        <Checkbox />
+        <label style={{ cursor: "pointer" }}>
+          {data[index] && data[index].program}
+        </label>
+      </div>
+    );
+  };
+
+  return (
+    <List
+      className="List"
+      height={150}
+      itemCount={data.length}
+      itemSize={35}
+      margin={20}
+      outerElementType={outerElementType}
+    >
+      {data ? Row : null}
+    </List>
+  );
+};

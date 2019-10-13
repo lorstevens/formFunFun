@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { SelectComponent } from "../select/Select.presentation";
 import { Card } from "../card/Card.presentation";
 import { ListComponent } from "../list/List.presentation";
+import Checkbox from "./Checkbox.presentation";
+import { data } from "../../datasources/data";
 
 const Container = styled.div`
   width: 600px;
@@ -39,12 +41,11 @@ export const Form = () => {
 
         <Content>
           <SelectComponent />
-          <ListComponent />
+          <ListComponent data={data} />
         </Content>
 
         <Content>
           <SelectComponent />
-          <ListComponent />
         </Content>
       </Container>
     </Card>
